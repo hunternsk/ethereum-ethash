@@ -40,6 +40,9 @@
 #include "sha3.h"
 #endif // WITH_CRYPTOPP
 
+// https://github.com/ifdefelse/ProgPOW#progpow-algorithm-walkthrough
+#ifdef PROGPOW_0_9_2
+#define PROGPOW_PERIOD                  50
 #define PROGPOW_LANES                   16
 #define PROGPOW_REGS                    32
 #define PROGPOW_DAG_LOADS                4
@@ -47,8 +50,17 @@
 #define PROGPOW_CNT_DAG                 ETHASH_ACCESSES
 #define PROGPOW_CNT_CACHE               12
 #define PROGPOW_CNT_MATH                20
+#else // ProgPoW 0.9.3
+#define PROGPOW_PERIOD                  10
+#define PROGPOW_LANES                   16
+#define PROGPOW_REGS                    32
+#define PROGPOW_DAG_LOADS                4
+#define PROGPOW_CACHE_BYTES             (16*1024)
+#define PROGPOW_CNT_DAG                 ETHASH_ACCESSES
+#define PROGPOW_CNT_CACHE               11
+#define PROGPOW_CNT_MATH                18
+#endif
 #define PROGPOW_CACHE_WORDS  (PROGPOW_CACHE_BYTES / sizeof(uint32_t))
-#define PROGPOW_PERIOD                  50
 
 #define ROTL(x,n,w) (((x) << (n % w)) | ((x) >> ((w) - (n % w))))
 #define ROTL32(x,n) ROTL(x,n,32)	/* 32 bits word */
