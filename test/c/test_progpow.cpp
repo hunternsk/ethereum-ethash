@@ -96,13 +96,6 @@ static ethash_h256_t stringToBlockhash(std::string const& _s)
 }
 
 /* ProgPoW */
-
-static void ethash_keccakf800(uint32_t state[25])
-{
-    for (int i = 0; i < 22; ++i)
-        keccak_f800_round(state, i);
-}
-
 BOOST_AUTO_TEST_CASE(test_progpow_math)
 {
 	typedef struct {

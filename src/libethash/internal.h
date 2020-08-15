@@ -117,6 +117,7 @@ ethash_return_value_t ethash_light_compute_internal(
 );
 
 void keccak_f800_round(uint32_t st[25], const int r);
+void ethash_keccakf800(uint32_t st[25]);
 hash32_t keccak_f800_progpow(hash32_t header, uint64_t seed, hash32_t digest);
 uint32_t progpowMath(uint32_t a, uint32_t b, uint32_t r);
 void merge(uint32_t *a, uint32_t b, uint32_t r);
